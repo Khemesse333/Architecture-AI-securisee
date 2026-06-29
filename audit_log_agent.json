@@ -1,0 +1,32 @@
+{
+  "audit_trail": [
+    {
+      "timestamp": "2026-06-29T12:23:35.823095",
+      "tool": "CalculatorTool",
+      "arguments": {
+        "data": [
+          14,
+          7,
+          23,
+          9,
+          31
+        ]
+      },
+      "allowed": true,
+      "rule_id": "allow-calculator",
+      "owasp_ref": null,
+      "latency_ms": 0.179
+    },
+    {
+      "timestamp": "2026-06-29T12:23:35.824093",
+      "tool": "SystemTerminalTool",
+      "arguments": {
+        "cmd": "cat /etc/passwd"
+      },
+      "allowed": false,
+      "rule_id": "block-prompt-injection",
+      "owasp_ref": "Agent-01",
+      "latency_ms": 0.313
+    }
+  ]
+}

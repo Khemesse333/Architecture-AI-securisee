@@ -1,0 +1,22 @@
+# Politique permissive pour environnement de développement
+version: "1.0"
+name: "dev-policy"
+description: "Politique souple pour les tests locaux - NE PAS utiliser en production"
+default_action: "allow"
+
+rules:
+  - id: "log-all-system-calls"
+    priority: 1
+    effect: "allow"
+    condition:
+      tool_name: "SystemTerminalTool"
+    owasp_ref: "Agent-01"
+    remediation: "AVERTISSEMENT : commande système autorisée en dev uniquement."
+
+  - id: "allow-all-reads"
+    priority: 10
+    effect: "allow"
+    condition:
+      tool_name: "DatabaseReadTool"
+    owasp_ref: null
+    remediation: null

@@ -1,0 +1,61 @@
+# Microsoft AGT - Production Policy
+# Inspiré de : https://github.com/microsoft/agent-governance-toolkit
+# Licence MIT - Adaptation pour plateforme IA distribuée sécurisée
+
+version: "1.0"
+name: "production-policy"
+description: "Politique de gouvernance stricte pour environnement de production"
+default_action: "deny"  # Zero-trust : tout est refusé par défaut
+
+rules:
+  # --- OWASP Agent-01 : Prompt Injection ---
+  - id: "block-prompt-injection"
+    priority: 1
+    effect: "deny"
+    condition:
+      tool_name: "SystemTerminalTool"
+    owasp_ref: "Agent-01"
+    remediation: "Commande système bloquée. Risque d'injection de prompt détecté."
+
+  # --- OWASP Agent-02 : Excessive Agency ---
+  - id: "block-file-delete"
+    priority: 2
+    effect: "deny"
+    condition:
+      tool_name: "FileDeleteTool"
+    owasp_ref: "Agent-02"
+    remediation: "Suppression de fichiers interdite en production."
+
+  # --- OWASP Agent-03 : Sensitive Data Exfiltration ---
+  - id: "block-data-export"
+    priority: 3
+    effect: "deny"
+    condition:
+      tool_name: "DataExportTool"
+    owasp_ref: "Agent-03"
+    remediation: "Export de données bloqué. Risque d'exfiltration."
+
+  # --- Actions autorisées ---
+  - id: "allow-calculator"
+    priority: 10
+    effect: "allow"
+    condition:
+      tool_name: "CalculatorTool"
+    owasp_ref: null
+    remediation: null
+
+  - id: "allow-database-read"
+    priority: 11
+    effect: "allow"
+    condition:
+      tool_name: "DatabaseReadTool"
+    owasp_ref: null
+    remediation: null
+
+  - id: "allow-web-search"
+    priority: 12
+    effect: "allow"
+    condition:
+      tool_name: "WebSearchTool"
+    owasp_ref: null
+    remediation: null

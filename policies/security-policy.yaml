@@ -1,0 +1,38 @@
+# Politique haute sécurité - Zero Trust complet
+version: "1.0"
+name: "security-policy"
+description: "Politique renforcée conforme OWASP Agentic Top 10"
+default_action: "deny"
+
+rules:
+  - id: "allow-math-tools"
+    priority: 10
+    effect: "allow"
+    condition:
+      tool_name: "CalculatorTool"
+    owasp_ref: null
+    remediation: null
+
+  - id: "zero-trust-sys-calls"
+    priority: 1
+    effect: "deny"
+    condition:
+      tool_name: "SystemTerminalTool"
+    owasp_ref: "Agent-01"
+    remediation: "Action bloquée par le noyau de sécurité. Violation OWASP Agent-02."
+
+  - id: "block-data-exfiltration"
+    priority: 2
+    effect: "deny"
+    condition:
+      tool_name: "DataExportTool"
+    owasp_ref: "Agent-03"
+    remediation: "Exfiltration bloquée. Violation OWASP Agent-03."
+
+  - id: "block-privilege-escalation"
+    priority: 3
+    effect: "deny"
+    condition:
+      tool_name: "AdminTool"
+    owasp_ref: "Agent-06"
+    remediation: "Escalade de privilèges détectée et bloquée."
