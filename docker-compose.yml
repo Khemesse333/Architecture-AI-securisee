@@ -1,0 +1,41 @@
+# Docker Compose — Architecture IA Sécurisée
+# Basé sur Microsoft Agent Governance Toolkit (MIT License)
+version: "3.9"
+
+services:
+  # ── Dashboard de gouvernance (Streamlit) ──────────────────────────
+  governance-dashboard:
+    image: python:3.10-slim
+    container_name: agt-dashboard
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "8501:8501"
+    command: >
+      sh -c "pip install streamlit pyyaml --quiet &&
+             streamlit run examples/governance_dashboard/dashboard.py
+             --server.port=8501
+             --server.address=0.0.0.0
+             --server.headless=true
+             --browser.gatherUsageStats=false"
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ── Démonstration terminal (optionnel) ────────────────────────────
+  governance-demo:
+    image: python:3.10-slim
+    container_name: agt-demo
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: >
+      sh -c "pip install pyyaml --quiet && python src/main.py"
+    profiles:
+      - demo
