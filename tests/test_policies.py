@@ -5,11 +5,11 @@ from governance_demo import GovernanceKernel
 
 @pytest.fixture
 def kernel_prod():
-    return GovernanceKernel(policy_path="policies/production-policy.yaml")
+    return GovernanceKernel(policy_path="config/production-policy.yaml")
 
 @pytest.fixture
 def kernel_security():
-    return GovernanceKernel(policy_path="policies/security-policy.yaml")
+    return GovernanceKernel(policy_path="config/security-policy.yaml")
 
 def test_calculator_autorise(kernel_prod):
     d = kernel_prod.evaluate("CalculatorTool", {"data": [1, 2, 3]})

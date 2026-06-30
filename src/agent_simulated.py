@@ -17,7 +17,7 @@ class SimulatedAgent:
     En production, remplacer par un vrai agent smolagents / LangChain / AutoGen.
     """
 
-    def __init__(self, name: str = "smolagents_worker", policy: str = "policies/production-policy.yaml"):
+    def __init__(self, name: str = "smolagents_worker", policy: str = "config/production-policy.yaml"):
         self.name = name
         self.kernel = GovernanceKernel(policy_path=policy)
         self.logger = AuditLogger()

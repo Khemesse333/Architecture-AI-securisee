@@ -55,7 +55,7 @@ class GovernanceKernel:
     Équivalent du composant 'Agent OS' dans le Microsoft AGT.
     """
 
-    def __init__(self, policy_path: str = "policies/production-policy.yaml"):
+    def __init__(self, policy_path: str = "config/production-policy.yaml"):
         self.policy_path = policy_path
         self._rules = []
         self.default_action = "deny"

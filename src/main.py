@@ -3,7 +3,7 @@ Architecture Sécurisée pour Plateforme IA Distribuée
 =====================================================
 Basé sur : Microsoft Agent Governance Toolkit (MIT License)
 Source    : https://github.com/microsoft/agent-governance-toolkit
-Auteur    : [Khémessse Diouf]  Swiss UMEF University, Master IA
+Auteur    : Khémessse Diouf  Swiss UMEF University, Master IA
 """
 
 import sys
@@ -21,7 +21,7 @@ def main():
     print("="*65 + "\n")
 
     # 1. Initialiser le kernel de gouvernance avec la policy de production
-    kernel = GovernanceKernel(policy_path="policies/production-policy.yaml")
+    kernel = GovernanceKernel(policy_path="config/production-policy.yaml")
     logger = AuditLogger()
 
     print("[PLATFORM] Kernel de gouvernance actif.")

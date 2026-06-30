@@ -14,7 +14,7 @@ services:
       - "8501:8501"
     command: >
       sh -c "pip install streamlit pyyaml --quiet &&
-             streamlit run examples/governance_dashboard/dashboard.py
+             streamlit run src/dashboard/app.py
              --server.port=8501
              --server.address=0.0.0.0
              --server.headless=true
